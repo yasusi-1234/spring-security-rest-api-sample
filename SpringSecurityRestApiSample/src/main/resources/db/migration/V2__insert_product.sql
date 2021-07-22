@@ -41,12 +41,12 @@ VALUES('G002', '雷電6', 5980, 1, NULL, '2020-03-28', 4);
 INSERT INTO product(product_id, product_name, price, stock, image_path, registation_date, category_id)
 VALUES('C001', '子供のうたBEST', 2980, 5, NULL, '2018-08-08', 5);
 
-INSERT INTO proceed(proceed_id, sales_time, sold_count, product_id, employee_id)
+INSERT INTO sales(sales_id, sales_time, sold_count, product_id, employee_id)
 VALUES('AAA', '2015-01-20 12:22:33', 3, 'A001', 'E001');
-INSERT INTO proceed(proceed_id, sales_time, sold_count, product_id, employee_id)
+INSERT INTO sales(sales_id, sales_time, sold_count, product_id, employee_id)
 VALUES('AAB', '2015-01-20 12:52:19', 7, 'A002', 'E001');
-INSERT INTO proceed(proceed_id, sales_time, sold_count, product_id, employee_id)
+INSERT INTO sales(sales_id, sales_time, sold_count, product_id, employee_id)
 VALUES('AAC', '2015-01-21 18:52:19', 15, 'A003', 'E001');
-INSERT INTO proceed(proceed_id, sales_time, sold_count, product_id, employee_id)
+INSERT INTO sales(sales_id, sales_time, sold_count, product_id, employee_id)
 VALUES('AAD', '2015-01-22 13:52:19', 1, 'B003', 'E001');
 
