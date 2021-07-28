@@ -18,6 +18,9 @@ public class RoleServiceImpl implements RoleService {
 		this.roleRepository = roleRepository;
 	}
 
+	/**
+	 * ロール情報新規追加用メソッド
+	 */
 	@Override
 	@Transactional(readOnly = false)
 	public Role saveRole(String roleName) {
