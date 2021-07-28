@@ -12,6 +12,7 @@ CREATE TABLE IF NOT EXISTS role(
 CREATE TABLE IF NOT EXISTS employee(
 	employee_id VARCHAR(255) PRIMARY KEY,
 	mail_address VARCHAR(255) NOT NULL UNIQUE,
+	password VARCHAR(255) NOT NULL,
 	first_name VARCHAR(100) NOT NULL,
 	last_name VARCHAR(100) NOT NULL,
 	age int NOT NULL,
@@ -32,7 +33,7 @@ CREATE TABLE IF NOT EXISTS product(
 	product_id VARCHAR(255) PRIMARY KEY,
 	product_name VARCHAR(255) NOT NULL,
 	price int NOT NULL,
-	stock int NOT NULL,
+	stock int UNSIGNED NOT NULL,
 	image_path VARCHAR(255),
 	registation_date DATE NOT NULL,
 	category_id int NOT NULL,

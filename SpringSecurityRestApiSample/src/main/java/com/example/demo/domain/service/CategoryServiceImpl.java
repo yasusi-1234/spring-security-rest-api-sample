@@ -6,9 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.example.demo.controller.form.CategoryForm;
 import com.example.demo.domain.model.Category;
 import com.example.demo.domain.repository.CategoryRepository;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Service
 @Transactional(readOnly = true)
@@ -16,13 +16,10 @@ public class CategoryServiceImpl implements CategoryService {
 
 	private final CategoryRepository categoryRepository;
 
-	private final ObjectMapper objectMapper;
-
 	@Autowired
-	public CategoryServiceImpl(CategoryRepository categoryRepository, ObjectMapper objectMapper) {
+	public CategoryServiceImpl(CategoryRepository categoryRepository) {
 		super();
 		this.categoryRepository = categoryRepository;
-		this.objectMapper = objectMapper;
 	}
 
 	@Override
@@ -30,16 +27,22 @@ public class CategoryServiceImpl implements CategoryService {
 		return categoryRepository.findAll();
 	}
 
+	/**
+	 * カテゴリーIDを元に1件のカテゴリー情報を検索する
+	 */
 	@Override
-	public Category findById(Integer id) {
-		return categoryRepository.findById(id).orElse(null);
+	public Category findById(Integer categoryId) {
+		return categoryRepository.findById(categoryId).orElse(null);
 	}
 
+	/**
+	 * カテゴリーの新規登録用メソッド
+	 */
 	@Override
 	@Transactional(readOnly = false, rollbackFor = Exception.class)
-	public Category save(String categoryName) {
+	public Category save(CategoryForm categoryForm) {
 		Category saveCategory = new Category();
-		saveCategory.setCategoryName(categoryName);
+		saveCategory.setCategoryName(categoryForm.getCategoryName());
 		return categoryRepository.save(saveCategory);
 	}
 }
