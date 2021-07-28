@@ -6,4 +6,5 @@ import com.example.demo.domain.model.Role;
 
 public interface RoleRepository extends JpaRepository<Role, Integer> {
 
+	Role findByRoleName(String roleName);
 }
