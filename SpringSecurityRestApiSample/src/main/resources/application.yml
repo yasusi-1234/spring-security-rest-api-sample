@@ -1,13 +1,18 @@
 spring:
   # database config
   datasource:
-    url: jdbc:mysql://localhost:3306/store_db?autoReconnect=true&useSSL=false&characterEncoding=utf8
+    url: jdbc:mysql://localhost:3306/store_db?autoReconnect=true&useSSL=false&characterEncoding=utf8&rewriteBatchedStatements=true
     username: sample
     password: 
     driver-class-name: com.mysql.cj.jdbc.Driver
   # jpa config
   jpa:
     show-sql: true
+    properties:
+      hibernate:
+        generate_statics: treu
+        jdbc:
+          batch_size: 30
 
 logging:
   level:
