@@ -1,4 +1,4 @@
-package com.example.demo.controller.form;
+package com.example.demo.controller.form.product;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;

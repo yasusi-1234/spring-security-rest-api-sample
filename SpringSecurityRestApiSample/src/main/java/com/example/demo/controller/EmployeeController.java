@@ -15,15 +15,16 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.controller.form.EmployeeForm;
-import com.example.demo.controller.form.error.BindErrorHelper;
+import com.example.demo.controller.form.employee.EmployeeForm;
+import com.example.demo.controller.form.helper.BindErrorHelper;
 import com.example.demo.domain.model.Employee;
 import com.example.demo.domain.service.EmployeeService;
-import com.example.demo.domain.service.RoleService;
 import com.example.demo.domain.service.exception.MailAddressAlreadyRegisteredException;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
+@RequiredArgsConstructor
 @Slf4j
 @RestController
 @RequestMapping("api/employee")
@@ -31,13 +32,6 @@ import lombok.extern.slf4j.Slf4j;
 public class EmployeeController {
 
 	private final EmployeeService employeeService;
-	private final RoleService roleService;
-
-	public EmployeeController(EmployeeService employeeService, RoleService roleService) {
-		super();
-		this.employeeService = employeeService;
-		this.roleService = roleService;
-	}
 
 	@GetMapping
 	public ResponseEntity<List<Employee>> findAllEmployee() {
@@ -59,7 +53,7 @@ public class EmployeeController {
 					.body(BindErrorHelper.getErrorDetailsMap(bindingResult));
 		}
 		Employee employee = employeeService.save(form);
-		return ResponseEntity.ok(employee);
+		return ResponseEntity.status(HttpStatus.CREATED).body(employee);
 	}
 
 	@ExceptionHandler

@@ -4,11 +4,10 @@ import java.util.List;
 import java.util.UUID;
 
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.example.demo.controller.form.EmployeeForm;
+import com.example.demo.controller.form.employee.EmployeeForm;
 import com.example.demo.domain.model.Employee;
 import com.example.demo.domain.model.Role;
 import com.example.demo.domain.repository.EmployeeRepository;
@@ -17,6 +16,9 @@ import com.example.demo.domain.service.exception.MailAddressAlreadyRegisteredExc
 import com.example.demo.domain.service.helper.EmployeeEmail;
 import com.example.demo.domain.service.helper.EmployeeSpecificationHelper;
 
+import lombok.RequiredArgsConstructor;
+
+@RequiredArgsConstructor
 @Transactional(readOnly = true)
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
@@ -26,15 +28,6 @@ public class EmployeeServiceImpl implements EmployeeService {
 	private final RoleRepository roleRepository;
 
 	private final ModelMapper modelMapper;
-
-	@Autowired
-	public EmployeeServiceImpl(EmployeeRepository employeeRepository, RoleRepository roleRepository,
-			ModelMapper modelMapper) {
-		super();
-		this.roleRepository = roleRepository;
-		this.employeeRepository = employeeRepository;
-		this.modelMapper = modelMapper;
-	}
 
 	@Override
 	public List<Employee> findAllEmployee() {

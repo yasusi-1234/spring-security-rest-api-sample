@@ -40,17 +40,52 @@ INSERT INTO product(product_id, product_name, price, stock, image_path, registat
 VALUES('G002', '雷電6', 5980, 1, NULL, '2020-03-28', 4);
 INSERT INTO product(product_id, product_name, price, stock, image_path, registation_date, category_id)
 VALUES('C001', '子供のうたBEST', 2980, 5, NULL, '2018-08-08', 5);
+INSERT INTO product(product_id, product_name, price, stock, image_path, registation_date, category_id)
+VALUES('S003', 'グラスB', 380, 15, NULL, '2018-08-08', 3);
+INSERT INTO product(product_id, product_name, price, stock, image_path, registation_date, category_id)
+VALUES('S004', 'カップA', 250, 25, NULL, '2018-08-08', 3);
+INSERT INTO product(product_id, product_name, price, stock, image_path, registation_date, category_id)
+VALUES('S005', 'カップB', 350, 15, NULL, '2018-08-08', 3);
+INSERT INTO product(product_id, product_name, price, stock, image_path, registation_date, category_id)
+VALUES('B004', 'DBの取り扱いの基礎', 2980, 5, NULL, '2018-08-08', 2);
+INSERT INTO product(product_id, product_name, price, stock, image_path, registation_date, category_id)
+VALUES('B005', 'JavaScript入門', 2580, 5, NULL, '2018-08-08', 2);
+INSERT INTO product(product_id, product_name, price, stock, image_path, registation_date, category_id)
+VALUES('B006', 'Javaオブジェクト指向の基礎', 2980, 5, NULL, '2018-08-08', 2);
+INSERT INTO product(product_id, product_name, price, stock, image_path, registation_date, category_id)
+VALUES('B007', 'PHP入門', 2980, 5, NULL, '2018-08-08', 2);
+INSERT INTO product(product_id, product_name, price, stock, image_path, registation_date, category_id)
+VALUES('A004', 'A4サイズ印刷用紙100枚', 100, 100, NULL, '2018-08-08', 1);
+INSERT INTO product(product_id, product_name, price, stock, image_path, registation_date, category_id)
+VALUES('A005', 'A4サイズ印刷用紙300枚', 200, 100, NULL, '2018-08-08', 1);
+INSERT INTO product(product_id, product_name, price, stock, image_path, registation_date, category_id)
+VALUES('A006', 'B5サイズ印刷用紙100枚', 100, 100, NULL, '2018-08-08', 1);
+INSERT INTO product(product_id, product_name, price, stock, image_path, registation_date, category_id)
+VALUES('A007', 'B5サイズ印刷用紙300枚', 200, 100, NULL, '2018-08-08', 1);
 
 INSERT INTO sales(sales_id, sales_time, sold_count, product_id, employee_id)
-VALUES('AAA', '2015-01-20 12:22:33', 10, 'A001', 'E001');
+VALUES('AAA', '2020-01-20 12:22:33', 10, 'A001', 'E001');
 INSERT INTO sales(sales_id, sales_time, sold_count, product_id, employee_id)
-VALUES('AAB', '2015-01-20 12:52:19', 8, 'A002', 'E001');
+VALUES('AAB', '2020-01-20 12:52:19', 8, 'A002', 'E001');
 INSERT INTO sales(sales_id, sales_time, sold_count, product_id, employee_id)
-VALUES('AAC', '2015-01-21 18:52:19', 2, 'A003', 'E001');
+VALUES('AAC', '2020-01-21 18:52:19', 2, 'A003', 'E001');
 INSERT INTO sales(sales_id, sales_time, sold_count, product_id, employee_id)
-VALUES('AAD', '2015-01-22 13:52:19', 2, 'B001', 'E001');
+VALUES('AAD', '2020-01-22 13:52:19', 2, 'B001', 'E001');
 INSERT INTO sales(sales_id, sales_time, sold_count, product_id, employee_id)
+VALUES('AAE', '2020-01-22 13:53:19', 2, 'B002', 'E002');
 
+INSERT INTO sales(sales_id, sales_time, sold_count, product_id, employee_id)
+VALUES('AAAA', '2021-06-20 12:22:33', 10, 'A004', 'E001');
+INSERT INTO sales(sales_id, sales_time, sold_count, product_id, employee_id)
+VALUES('AAAB', '2021-06-20 12:52:19', 8, 'A006', 'E002');
+INSERT INTO sales(sales_id, sales_time, sold_count, product_id, employee_id)
+VALUES('AAAC', '2021-06-21 18:52:19', 2, 'S005', 'E003');
+INSERT INTO sales(sales_id, sales_time, sold_count, product_id, employee_id)
+VALUES('AAAD', '2021-06-22 13:52:19', 2, 'S004', 'E004');
+INSERT INTO sales(sales_id, sales_time, sold_count, product_id, employee_id)
+VALUES('AAAE', '2021-06-22 13:52:19', 2, 'S004', 'E002');
+
+INSERT INTO sales(sales_id, sales_time, sold_count, product_id, employee_id)
 VALUES('BAA', '2021-07-1 13:52:19', 2, 'B003', 'E004');
 INSERT INTO sales(sales_id, sales_time, sold_count, product_id, employee_id)
 VALUES('BBA', '2021-07-1 14:52:19', 1, 'G001', 'E001');
@@ -60,4 +95,6 @@ INSERT INTO sales(sales_id, sales_time, sold_count, product_id, employee_id)
 VALUES('CCC', '2021-07-2 17:52:19', 4, 'S002', 'E003');
 INSERT INTO sales(sales_id, sales_time, sold_count, product_id, employee_id)
 VALUES('DDD', '2021-07-2 19:52:19', 2, 'C001', 'E002');
+INSERT INTO sales(sales_id, sales_time, sold_count, product_id, employee_id)
+VALUES('DDE', '2021-07-2 19:55:19', 2, 'A002', 'E002');
 

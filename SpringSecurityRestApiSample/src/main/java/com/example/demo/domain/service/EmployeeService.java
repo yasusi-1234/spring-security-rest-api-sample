@@ -2,7 +2,7 @@ package com.example.demo.domain.service;
 
 import java.util.List;
 
-import com.example.demo.controller.form.EmployeeForm;
+import com.example.demo.controller.form.employee.EmployeeForm;
 import com.example.demo.domain.model.Employee;
 
 public interface EmployeeService {

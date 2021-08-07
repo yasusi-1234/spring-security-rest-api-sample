@@ -3,7 +3,6 @@ package com.example.demo.controller;
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -18,10 +17,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.controller.form.CategoryForm;
-import com.example.demo.controller.form.ProductForm;
-import com.example.demo.controller.form.ProductUpdateForm;
-import com.example.demo.controller.form.error.BindErrorHelper;
+import com.example.demo.controller.form.helper.BindErrorHelper;
+import com.example.demo.controller.form.product.CategoryForm;
+import com.example.demo.controller.form.product.ProductForm;
+import com.example.demo.controller.form.product.ProductUpdateForm;
+import com.example.demo.controller.form.product.UpdateProductsForm;
 import com.example.demo.domain.model.Category;
 import com.example.demo.domain.model.Product;
 import com.example.demo.domain.service.CategoryService;
@@ -29,6 +29,9 @@ import com.example.demo.domain.service.ProductService;
 import com.example.demo.domain.service.exception.ProductStockUpdateFailureException;
 import com.mysql.cj.jdbc.exceptions.MysqlDataTruncation;
 
+import lombok.RequiredArgsConstructor;
+
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("api/product")
 @CrossOrigin // test用
@@ -37,13 +40,6 @@ public class ProductController {
 	private final ProductService productService;
 
 	private final CategoryService categoryService;
-
-	@Autowired
-	public ProductController(ProductService productService, CategoryService categoryService) {
-		super();
-		this.productService = productService;
-		this.categoryService = categoryService;
-	}
 
 	@GetMapping
 	public ResponseEntity<List<Product>> findAll() {
@@ -67,7 +63,7 @@ public class ProductController {
 			Map<String, String> errorMap = BindErrorHelper.getErrorDetailsMap(bindingResult);
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorMap);
 		}
-		return ResponseEntity.ok(productService.save(productForm));
+		return ResponseEntity.status(HttpStatus.CREATED).body(productService.save(productForm));
 	}
 
 	@PatchMapping(path = "/update")
@@ -77,7 +73,27 @@ public class ProductController {
 			Map<String, String> errorMap = BindErrorHelper.getErrorDetailsMap(bindingResult);
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorMap);
 		}
-		return ResponseEntity.ok(productService.updateStock(form.getProductId(), form.getSubtractedValue()));
+
+		if (form.isSubtraction()) {
+			// 減らす処理のリクエストの場合
+			return ResponseEntity.ok(productService.updateSubscribeStock(form.getProductId(), form.getRequestValue()));
+		} else {
+			// 増やしたい処理のリクエストの場合
+			return ResponseEntity.ok(productService.updateAddStock(form.getProductId(), form.getRequestValue()));
+		}
+	}
+
+	@PatchMapping(path = "/multiple/update")
+	public ResponseEntity<Object> multipleUpdateProduct(@Validated @RequestBody UpdateProductsForm form,
+			BindingResult bindingResult) {
+		if (bindingResult.hasErrors()) {
+			Map<String, String> errorMap = BindErrorHelper.getErrorDetailsMap(bindingResult);
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorMap);
+		}
+		if (form.getUpdateProducts().isEmpty()) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("request element is empty.");
+		}
+		return ResponseEntity.ok(productService.multiplAddStock(form));
 	}
 
 	@PostMapping(path = "/category/register")
@@ -86,7 +102,7 @@ public class ProductController {
 			Map<String, String> errorMap = BindErrorHelper.getErrorDetailsMap(bindingResult);
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorMap);
 		}
-		return ResponseEntity.ok(categoryService.save(form));
+		return ResponseEntity.status(HttpStatus.CREATED).body(categoryService.save(form));
 	}
 
 	@ExceptionHandler
@@ -96,7 +112,7 @@ public class ProductController {
 
 	@ExceptionHandler
 	public ResponseEntity<Object> productStockUpdateFailureExceptionHandler(ProductStockUpdateFailureException ex) {
-		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMap());
 	}
 
 }

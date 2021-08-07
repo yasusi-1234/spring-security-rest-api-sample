@@ -10,8 +10,10 @@ import static com.example.demo.common.EntityValues.SALES_TIME;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
 import com.example.demo.domain.model.Sales;
@@ -37,6 +39,29 @@ public class SalesSpecificationHelper {
 				root.fetch(PRODUCT).fetch(CATEGORY);
 			}
 			return query.getRestriction();
+		};
+	}
+
+	public static Specification<Sales> fetchProduct() {
+		return (root, query, cb) -> {
+			if (query.getResultType() == Long.class) {
+				root.join(PRODUCT);
+			} else {
+				root.fetch(PRODUCT);
+			}
+			return query.getRestriction();
+		};
+	}
+
+	/**
+	 * 製品IDリストと一致する要素を抽出する
+	 * 
+	 * @param salesIds
+	 * @return
+	 */
+	public static Specification<Sales> inSalesIds(List<String> salesIds) {
+		return CollectionUtils.isEmpty(salesIds) ? null : (root, query, cb) -> {
+			return root.get("salesId").in(salesIds);
 		};
 	}
 
