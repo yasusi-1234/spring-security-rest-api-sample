@@ -2,25 +2,21 @@ package com.example.demo.domain.service;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.example.demo.controller.form.CategoryForm;
+import com.example.demo.controller.form.product.CategoryForm;
 import com.example.demo.domain.model.Category;
 import com.example.demo.domain.repository.CategoryRepository;
 
+import lombok.RequiredArgsConstructor;
+
+@RequiredArgsConstructor
 @Service
 @Transactional(readOnly = true)
 public class CategoryServiceImpl implements CategoryService {
 
 	private final CategoryRepository categoryRepository;
-
-	@Autowired
-	public CategoryServiceImpl(CategoryRepository categoryRepository) {
-		super();
-		this.categoryRepository = categoryRepository;
-	}
 
 	@Override
 	public List<Category> findAllCategory() {

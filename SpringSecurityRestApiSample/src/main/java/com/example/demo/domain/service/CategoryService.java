@@ -2,7 +2,7 @@ package com.example.demo.domain.service;
 
 import java.util.List;
 
-import com.example.demo.controller.form.CategoryForm;
+import com.example.demo.controller.form.product.CategoryForm;
 import com.example.demo.domain.model.Category;
 
 public interface CategoryService {
