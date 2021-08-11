@@ -64,4 +64,14 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 		return employeeRepository.save(employee);
 	}
+
+	/**
+	 * メールアドレスの情報を元に1件の従業員情報を返却
+	 * 
+	 * @return 引数に一致した従業員情報1件、見つからなかった場合はnull
+	 */
+	@Override
+	public Employee findByMailAddress(String mailAddress) {
+		return employeeRepository.findByMail(mailAddress);
+	}
 }
