@@ -59,6 +59,7 @@ public class ProductController {
 	@PostMapping(path = "/register")
 	public ResponseEntity<Object> postProduct(@Validated @RequestBody ProductForm productForm,
 			BindingResult bindingResult) {
+//		System.out.println(productForm);
 		if (bindingResult.hasErrors()) {
 			Map<String, String> errorMap = BindErrorHelper.getErrorDetailsMap(bindingResult);
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorMap);
