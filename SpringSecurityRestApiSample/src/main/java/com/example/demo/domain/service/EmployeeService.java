@@ -13,4 +13,6 @@ public interface EmployeeService {
 
 	Employee save(EmployeeForm form);
 
+	Employee findByMailAddress(String mailAddress);
+
 }

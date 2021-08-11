@@ -41,4 +41,8 @@ public class Employee implements Serializable {
 	@ManyToOne(optional = false)
 	@JoinColumn(name = "role_id")
 	private Role role;
+
+	public String getFullName() {
+		return getLastName() + " " + getFirstName();
+	}
 }

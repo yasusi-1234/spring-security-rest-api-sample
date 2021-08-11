@@ -27,15 +27,20 @@ dependencies {
 	implementation 'io.springfox:springfox-swagger-ui:2.6.0'
 	testImplementation 'io.springfox:springfox-staticdocs:2.6.0'
 	
-	// https://mvnrepository.com/artifact/org.springframework.data/spring-data-rest-core
-	//implementation group: 'org.springframework.data', name: 'spring-data-rest-core', version: '3.5.3'
-	// implementation 'th.co.geniustree.springdata.jpa:specification-with-projections:2.0.1'
+	// security
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	
+	// jwt
+	implementation 'com.auth0:java-jwt:3.18.1'
 	
 	// lombok
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
 	// https://mvnrepository.com/artifact/org.modelmapper/modelmapper モデルマッパー
 	implementation group: 'org.modelmapper', name: 'modelmapper', version: '2.4.4'
+	// aop
+	implementation 'org.springframework:spring-aop'
+	implementation 'org.aspectj:aspectjweaver'
 	
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	runtimeOnly 'mysql:mysql-connector-java'

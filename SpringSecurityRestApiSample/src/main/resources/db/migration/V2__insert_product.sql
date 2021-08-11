@@ -2,14 +2,15 @@ INSERT INTO role(role_name) values('ROLE_ADMIN');
 INSERT INTO role(role_name) values('ROLE_CHIEF');
 INSERT INTO role(role_name) values('ROLE_GENERAL');
 
+-- password = password
 INSERT INTO employee(employee_id, mail_address, password, first_name, last_name, age, joining_date, role_id)
-VALUES('E001', 'tarou@example.com','password', '太郎', '山田', 35, '2015-01-20', 1);
+VALUES('E001', 'tarou@example.com','$2a$08$ICTJ9Z9MvLaWQlgWeQTz4eq6behe93Y/nAb27dViz7mjGYUOhUVbC', '太郎', '山田', 35, '2015-01-20', 1);
 INSERT INTO employee(employee_id, mail_address, password, first_name, last_name, age, joining_date, role_id)
-VALUES('E002', 'ichiro@example.com', 'password', '一郎', '鈴木', 30, '2018-07-06', 2);
+VALUES('E002', 'ichiro@example.com', '$2a$08$ICTJ9Z9MvLaWQlgWeQTz4eq6behe93Y/nAb27dViz7mjGYUOhUVbC', '一郎', '鈴木', 30, '2018-07-06', 2);
 INSERT INTO employee(employee_id, mail_address, password, first_name, last_name, age, joining_date, role_id)
-VALUES('E003', 'hanako@example.com', 'password', '花子', '清水', 24, '2019-04-14', 3);
+VALUES('E003', 'hanako@example.com', '$2a$08$ICTJ9Z9MvLaWQlgWeQTz4eq6behe93Y/nAb27dViz7mjGYUOhUVbC', '花子', '清水', 24, '2019-04-14', 3);
 INSERT INTO employee(employee_id, mail_address, password, first_name, last_name, age, joining_date, role_id)
-VALUES('E004', 'noriko@example.com', 'password', '典子', '小林', 22, '2019-05-03', 3);
+VALUES('E004', 'noriko@example.com', '$2a$08$ICTJ9Z9MvLaWQlgWeQTz4eq6behe93Y/nAb27dViz7mjGYUOhUVbC', '典子', '小林', 22, '2019-05-03', 3);
 
 INSERT INTO category(category_name)VALUES('文房具');
 INSERT INTO category(category_name)VALUES('書籍');
